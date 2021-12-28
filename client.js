@@ -30,6 +30,8 @@ async function start() {
         client_id: "client1",
         client_secret: "L6QBtZCrUyNwZfjLmzFV8bZzLGS00O5C"
     });
+
+    console.log(token);
 }
 
 
