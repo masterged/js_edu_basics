@@ -1,40 +1,36 @@
 import fetch from 'node-fetch';
 
-function start() {
-    const connect = function (credentials) {
-        const URL = "https://devtest.io.neolant.su/connect/token"
-        const getBody = function ({
-            username,
-            password,
-            client_id,
-            client_secret
-        }) {
-            return new URLSearchParams();
+async function start() {
+    const connect = async function (credentials) {
+        const URL = "https://devtest.io.neolant.su/connect/token";
+        const getBody = function () {
+            const body = new URLSearchParams()
             body.append("grant_type", "password");
-            body.append("scope", "ns openid");
-            body.append("username", username);
-            body.append("password", password);
-            body.append("client_id", client_id);
-            body.append("client_secret", client_secret);
+            body.append("username", credentials.username);
+            body.append("password", credentials.password);
+            body.append("client_id", credentials.client_id);
+            body.append("client_secret", credentials.client_secret);
+            body.append("scope", "ns openid offline_access");
+            return body;
         };
+        const body = getBody();
+        const response = await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: body.toString()
+        });
+        return response.json();
+    };
 
-        const body = getBody(credentials.username, credentials.password, credentials.client_id, credentials.client_secret);
-        console.log(body);
-
-        const request = function (body) {
-            return fetch(URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: body
-            });
-
-            const result = await request(body);
-            if (!result.ok) console.log(result.status, result.statusText);
-            console.debug(result.text);
-        }
-    }
+    const token = await connect({
+        username: "shestakov",
+        password: "NHawk2001871645",
+        client_id: "client1",
+        client_secret: "L6QBtZCrUyNwZfjLmzFV8bZzLGS00O5C"
+    });
 }
 
-start();
+
+await start();
