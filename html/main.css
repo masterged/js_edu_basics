@@ -1,0 +1,15 @@
+:root{
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.cards{
+    display: flex;
+}
+
+.card{
+    padding: 1.2em;
+    margin: 1.2em;
+}
