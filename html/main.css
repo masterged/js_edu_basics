@@ -6,20 +6,30 @@
     box-sizing: border-box;
     font-size: 1rem;
 }
+*,::after,::before
+{
+    box-sizing: inherit;
+}
+
+.card{
+    float: right;
+}
+
 
 h4{
     font-family: var(--font-head);
     margin: 1.2em 0;
 }
 
-.cards{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
 .card .comment-text{
     font-family:var(--font-card);
+}
+
+img{
+    float: left;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
 }
 
 .card{
